@@ -1,0 +1,1 @@
+(()=>{"use strict";const o=twoModule;console.log("One"),o()})();
