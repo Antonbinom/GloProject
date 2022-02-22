@@ -1,3 +1,3 @@
 import timerModule from "./modules/timer";
 
-timerModule('20  febuary 2022'); // вызов функции. Передаем дату deadline
+timerModule('25 febuary 2022'); // вызов функции. Передаем дату deadline
