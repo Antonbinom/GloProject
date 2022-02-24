@@ -33,11 +33,11 @@ const timerModule = (deadline) => {
 		else if (getTime.days % 10 == 1 && getTime.days != 11) timerDays.textContent = getTime.days + ' день /';
 		else timerDays.textContent = getTime.days + ' дней /';
 
-		if (10 > getTime.hours >= 0) timerHours.textContent = '0' + getTime.hours + ' ч';
+		if (getTime.hours < 10 && getTime.hours >= 0) timerHours.textContent = '0' + getTime.hours + ' ч';
 		else timerHours.textContent = getTime.hours + ' ч';
-		if (10 > getTime.minutes >= 0) timerMinutes.textContent = '0' + getTime.minutes + ' м';
+		if (getTime.minutes < 10 && getTime.minutes >= 0) timerMinutes.textContent = '0' + getTime.minutes + ' м';
 		else timerMinutes.textContent = getTime.minutes + ' м';
-		if (10 > getTime.seconds >= 0) timerSeconds.textContent = '0' + getTime.seconds + ' с';
+		if (getTime.seconds < 10 && getTime.seconds >= 0) timerSeconds.textContent = '0' + getTime.seconds + ' с';
 		else timerSeconds.textContent = getTime.seconds + ' с';
 	};
 
