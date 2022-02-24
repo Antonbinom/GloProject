@@ -13,30 +13,30 @@ const menuModule = () => {
 	menuBtn.addEventListener('click', menuActive);
 	closeBtn.addEventListener('click', menuActive);
 
-	// // Усложненное задание
+	// Усложненное задание
 
-	// // прокрутка к следующему блоку после нажатия на кнопку вниз
-	// downBtn.addEventListener('click', event => {
-	// 	event.preventDefault();
-	// 	const nextBlockId = downBtn.getAttribute('href');
-	// 	document.querySelector(nextBlockId).scrollIntoView({
-	// 		behavior: 'smooth',
-	// 		block: 'start'
-	// 	});
-	// });
+	// прокрутка к следующему блоку после нажатия на кнопку вниз
+	downBtn.addEventListener('click', event => {
+		event.preventDefault();
+		const nextBlockId = downBtn.getAttribute('href');
+		document.querySelector(nextBlockId).scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
+	});
 
-	// // плавный скролл к блокам при нажатии на пункты меню
-	// menuItems.forEach(menuItem => menuItem.addEventListener('click', menuActive));
-	// menuItems.forEach(link => {
-	// 	link.addEventListener('click', event => {
-	// 		event.preventDefault();
-	// 		const blockID = link.getAttribute('href');
-	// 		document.querySelector(blockID).scrollIntoView({
-	// 			behavior: 'smooth',
-	// 			block: 'start'
-	// 		});
-	// 	});
-	// });
+	// плавный скролл к блокам при нажатии на пункты меню
+	menuItems.forEach(menuItem => menuItem.addEventListener('click', menuActive));
+	menuItems.forEach(link => {
+		link.addEventListener('click', event => {
+			event.preventDefault();
+			const blockID = link.getAttribute('href');
+			document.querySelector(blockID).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+		});
+	});
 };
 
 export default menuModule;
