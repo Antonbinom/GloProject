@@ -5,6 +5,7 @@ const validationModule = () => {
 	const inputMessage = document.querySelector('.mess');
 	const inputPhone = document.querySelectorAll('[type="tel"]');
 	const inputEmail = document.querySelectorAll('[type="email"]');
+	const inputName = document.querySelectorAll('[name="user_name"]');
 
 	calcInputs.forEach((item) => {
 		item.addEventListener('input', (e) => {
@@ -26,6 +27,11 @@ const validationModule = () => {
 		});
 	});
 
+	inputName.forEach((item) => {
+		item.addEventListener('input', (e) => {
+			e.target.value = e.target.value = e.target.value.replace(/[^а-я]/gi, "");
+		});
+	});
 };
 
 export default validationModule;

@@ -19,6 +19,17 @@ const modalModule = () => {
 		}
 	};
 
+	const modalDown = () => {
+		idInterval = requestAnimationFrame(modalUp);
+		modalContent.style.transition = "all 0.3s";
+		if (modalContent.style.top < "120%") {
+			count++;
+			modalContent.style.top = (10 + count * 10) + '%';
+		} else {
+			cancelAnimationFrame(idInterval);
+		}
+	};
+
 	buttons.forEach(btn => {
 		btn.addEventListener('click', () => {
 			modal.style.display = "block";
@@ -32,11 +43,16 @@ const modalModule = () => {
 	});
 
 	closeBtn.addEventListener('click', () => {
-		modal.style.display = "none";
 		if (innerWidth > 768) {
 			modalContent.style.top = "120%";
 			count = 0;
+		} else {
+			idInterval = requestAnimationFrame(modalDown);
+			modalContent.style.top = "10%";
 		}
+		setTimeout(() => {
+			modal.style.display = "none";
+		}, 100);
 	});
 };
 
