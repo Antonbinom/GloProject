@@ -2,10 +2,9 @@ const validationModule = () => {
 
 	const calcBlock = document.querySelector('.calc-block');
 	const calcInputs = calcBlock.querySelectorAll('input');
-	const inputMessage = document.querySelector('.mess');
+	const inputText = document.querySelectorAll('[name="user_message"], [name="user_name"]');
 	const inputPhone = document.querySelectorAll('[type="tel"]');
 	const inputEmail = document.querySelectorAll('[type="email"]');
-	const inputName = document.querySelectorAll('[name="user_name"]');
 
 	calcInputs.forEach((item) => {
 		item.addEventListener('input', (e) => {
@@ -13,9 +12,17 @@ const validationModule = () => {
 		});
 	});
 
-	inputMessage.addEventListener('input', (e) => {
-		e.target.value = e.target.value.replace(/[^а-я -]/gi, "");
+	inputText.forEach((item) => {
+		item.addEventListener('input', (e) => {
+			e.target.value = e.target.value.replace(/[^а-я\ \-\.\,]/gi, "");
+		});
+		item.addEventListener('blur', (e) => {
+			e.target.value = e.target.value.replace(/(^[\s\-]{0,})([\ \-])+/g, (str, $1, $2) => {
+				return $2;
+			});
+		});
 	});
+
 	inputPhone.forEach((item) => {
 		item.addEventListener('input', (e) => {
 			e.target.value = e.target.value.replace(/[^0-9()-]/gi, "");
@@ -27,11 +34,6 @@ const validationModule = () => {
 		});
 	});
 
-	inputName.forEach((item) => {
-		item.addEventListener('input', (e) => {
-			e.target.value = e.target.value = e.target.value.replace(/[^а-я]/gi, "");
-		});
-	});
 };
 
 export default validationModule;
