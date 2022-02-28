@@ -1,58 +1,34 @@
 const menu = () => {
-	const menuBtn = document.querySelector('.menu');
 	const menu = document.querySelector('menu');
-	const closeBtn = menu.querySelector('.close-btn');
-	const downBtn = document.querySelector('[href="#service-block"]');
-	const menuItems = menu.querySelectorAll('ul>li>a');
-	console.log(menuItems);
+	const body = document.querySelector('body');
 	// скрыть/показать меню
 	const menuActive = () => {
 		menu.classList.toggle('active-menu');
 	};
 
-	menuBtn.addEventListener('click', menuActive);
-
-	menu.addEventListener('click', (e) => { // при клике на область меню
-		if (e.target === closeBtn) { // если причина события closeBtn
-			menuActive();
-		} else if (e.target.matches('a')) { // если является тэгом a
+	body.addEventListener('click', (e) => {
+		console.log(e.target);
+		if (e.target.closest('.menu')) menuActive();
+		else if (e.target.matches('menu')) return;
+		else if (e.target.classList.contains('close-btn')) menuActive();
+		else if (e.target.matches('ul>li>a')) {
 			e.preventDefault();
-			// menuActive();
-			menuItems.forEach((link, index) => {
-				console.log(link[3]);
-				const blockId = link.getAttribute('href');
-				// document.querySelector(blockId).scrollIntoView({
-				// 	behavior: 'smooth',
-				// 	block: 'start'
-				// });
+			const blockId = e.target.getAttribute('href');
+			document.querySelector(blockId).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
 			});
-		}
+			menuActive();
+		} else if (e.target.matches('main>a>img')) {
+			console.log(e.target);
+			e.preventDefault();
+			const nextBlockId = e.target.closest('a').getAttribute('href');
+			document.querySelector(nextBlockId).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+		} else if (menu.classList.contains('active-menu') && !e.target.closest('.menu') && !e.target.matches('ul>li')) menuActive();
 	});
-
-	// menuItems.forEach(link => {
-	// 	link.addEventListener('click', event => {
-	// 		// event.preventDefault();
-	// 		const blockID = link.getAttribute('href');
-	// 		document.querySelector(blockID).scrollIntoView({
-	// 			behavior: 'smooth',
-	// 			block: 'start'
-	// 		});
-	// 	});
-	// });
-
-	// Усложненное задание
-
-	// прокрутка к следующему блоку после нажатия на кнопку вниз
-	downBtn.addEventListener('click', event => {
-		event.preventDefault();
-		const nextBlockId = downBtn.getAttribute('href');
-		document.querySelector(nextBlockId).scrollIntoView({
-			behavior: 'smooth',
-			block: 'start'
-		});
-	});
-
-	// плавный скролл к блокам при нажатии на пункты меню
 
 };
 
