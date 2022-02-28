@@ -17,6 +17,7 @@ const validationModule = () => {
 		item.addEventListener('input', (e) => {
 			e.target.value = e.target.value.replace(/[^а-я\ \-\.\,]/gi, "");
 		});
+
 		item.addEventListener('blur', (e) => {
 			e.target.value = e.target.value.replace(/([\-\ ]|^)[а-яё]/g, (u) => {
 				return u.toUpperCase();
@@ -29,6 +30,7 @@ const validationModule = () => {
 			e.target.value = e.target.value.replace(/[^0-9()-]/gi, "");
 		});
 	});
+
 	inputEmail.forEach((item) => {
 		item.addEventListener('input', (e) => {
 			e.target.value = e.target.value.replace(/[^\@\-\_\.\!\~\*\'\w]/gi, "");
