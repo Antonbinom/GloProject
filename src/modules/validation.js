@@ -18,7 +18,7 @@ const validationModule = () => {
 			e.target.value = e.target.value.replace(/[^а-я\ \-\.\,]/gi, "");
 		});
 		item.addEventListener('blur', (e) => {
-			e.target.value = e.target.value.replace(/([\-\ ]|^)[а-яё]/g, function (u) {
+			e.target.value = e.target.value.replace(/([\-\ ]|^)[а-яё]/g, (u) => {
 				return u.toUpperCase();
 			});
 		});
