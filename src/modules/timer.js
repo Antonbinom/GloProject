@@ -1,4 +1,4 @@
-const timerModule = (deadline) => {
+const timer = (deadline) => {
 	const timerDays = document.querySelector('#timer-days');
 	const timerHours = document.querySelector('#timer-hours');
 	const timerMinutes = document.querySelector('#timer-minutes');
@@ -54,4 +54,4 @@ const timerModule = (deadline) => {
 	// updateClock();
 };
 
-export default timerModule;
+export default timer;

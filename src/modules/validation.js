@@ -1,4 +1,4 @@
-const validationModule = () => {
+const validation = () => {
 
 	const calcBlock = document.querySelector('.calc-block');
 	const calcInputs = calcBlock.querySelectorAll('input');
@@ -17,9 +17,10 @@ const validationModule = () => {
 		item.addEventListener('input', (e) => {
 			e.target.value = e.target.value.replace(/[^а-я\ \-\.\,]/gi, "");
 		});
+
 		item.addEventListener('blur', (e) => {
-			e.target.value = e.target.value.replace(/([\-\ ]|^)[а-яё]/g, (u) => {
-				return u.toUpperCase();
+			e.target.value = e.target.value.toLowerCase().replace(/([\-\ ]|^)([а-яё])/g, (str) => {
+				return str.toUpperCase();
 			});
 		});
 	});
@@ -29,6 +30,7 @@ const validationModule = () => {
 			e.target.value = e.target.value.replace(/[^0-9()-]/gi, "");
 		});
 	});
+
 	inputEmail.forEach((item) => {
 		item.addEventListener('input', (e) => {
 			e.target.value = e.target.value.replace(/[^\@\-\_\.\!\~\*\'\w]/gi, "");
@@ -44,4 +46,4 @@ const validationModule = () => {
 	});
 };
 
-export default validationModule;
+export default validation;
