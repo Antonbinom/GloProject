@@ -19,8 +19,8 @@ const validationModule = () => {
 		});
 
 		item.addEventListener('blur', (e) => {
-			e.target.value = e.target.value.replace(/([\-\ ]|^)[а-яё]/g, (u) => {
-				return u.toUpperCase();
+			e.target.value = e.target.value.toLowerCase().replace(/([\-\ ]|^)([а-яё])/g, (str) => {
+				return str.toUpperCase();
 			});
 		});
 	});
