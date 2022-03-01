@@ -1,9 +1,13 @@
-import timerModule from "./modules/timer";
-import menuModule from "./modules/menu";
-import modalModule from "./modules/modal";
-import validationModule from "./modules/validation";
+import timer from "./modules/timer";
+import menu from "./modules/menu";
+import modal from "./modules/modal";
+import validation from "./modules/validation";
+import tabs from "./modules/tabs";
+import slider from "./modules/slider";
 
-timerModule('25 march 2022'); // вызов функции. Передаем дату deadline
-menuModule();
-modalModule();
-validationModule();
+timer('25 march 2022'); // вызов функции. Передаем дату deadline
+menu();
+modal();
+validation();
+tabs();
+slider();

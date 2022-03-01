@@ -1,4 +1,4 @@
-const validationModule = () => {
+const validation = () => {
 
 	const calcBlock = document.querySelector('.calc-block');
 	const calcInputs = calcBlock.querySelectorAll('input');
@@ -46,4 +46,4 @@ const validationModule = () => {
 	});
 };
 
-export default validationModule;
+export default validation;

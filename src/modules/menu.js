@@ -1,42 +1,33 @@
-const menuModule = () => {
-	const menuBtn = document.querySelector('.menu');
+const menu = () => {
 	const menu = document.querySelector('menu');
-	const closeBtn = menu.querySelector('.close-btn');
-	const downBtn = document.querySelector('[href="#service-block"]');
-	const menuItems = menu.querySelectorAll('ul>li>a');
-
+	const body = document.querySelector('body');
 	// скрыть/показать меню
 	const menuActive = () => {
 		menu.classList.toggle('active-menu');
 	};
 
-	menuBtn.addEventListener('click', menuActive);
-	closeBtn.addEventListener('click', menuActive);
-
-	// Усложненное задание
-
-	// прокрутка к следующему блоку после нажатия на кнопку вниз
-	downBtn.addEventListener('click', event => {
-		event.preventDefault();
-		const nextBlockId = downBtn.getAttribute('href');
-		document.querySelector(nextBlockId).scrollIntoView({
-			behavior: 'smooth',
-			block: 'start'
-		});
-	});
-
-	// плавный скролл к блокам при нажатии на пункты меню
-	menuItems.forEach(menuItem => menuItem.addEventListener('click', menuActive));
-	menuItems.forEach(link => {
-		link.addEventListener('click', event => {
-			event.preventDefault();
-			const blockID = link.getAttribute('href');
-			document.querySelector(blockID).scrollIntoView({
+	body.addEventListener('click', (e) => {
+		if (e.target.closest('.menu')) menuActive();
+		else if (e.target.matches('menu')) return;
+		else if (e.target.classList.contains('close-btn')) menuActive();
+		else if (e.target.matches('ul>li>a')) {
+			e.preventDefault();
+			const blockId = e.target.getAttribute('href');
+			document.querySelector(blockId).scrollIntoView({
 				behavior: 'smooth',
 				block: 'start'
 			});
-		});
+			menuActive();
+		} else if (e.target.matches('main>a>img')) {
+			e.preventDefault();
+			const nextBlockId = e.target.closest('a').getAttribute('href');
+			document.querySelector(nextBlockId).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+		} else if (menu.classList.contains('active-menu') && !e.target.closest('.menu') && !e.target.matches('ul>li')) menuActive();
 	});
+
 };
 
-export default menuModule;
+export default menu;
