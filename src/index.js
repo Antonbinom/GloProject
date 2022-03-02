@@ -12,4 +12,4 @@ modal();
 validation();
 tabs();
 slider('dot', 'dot-active', 'portfolio-item-active');
-calc();
+calc(100);

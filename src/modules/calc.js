@@ -1,4 +1,4 @@
-const calc = () => {
+const calc = (price = 100) => {
 
 	const calcBlock = document.querySelector('.calc-block');
 	const calcType = document.querySelector('.calc-type');
@@ -6,22 +6,22 @@ const calc = () => {
 	const calcCount = document.querySelector('.calc-count');
 	const calcDay = document.querySelector('.calc-day');
 	const total = document.getElementById('total');
-
+	let interval;
 	const totalValueAnimation = (value) => {
-		let count = 1;
-		let time;
-		if (value <= 100) time = 3;
-		else if (value <= 1000) time = 3;
-		else if (value < 10000) time = 1;
+		let count = 0;
+		let step = value / 100;
 
-		const interval = setInterval(() => {
-			count++;
+		interval = setInterval(() => {
+			count += step;
 			if (count == value) clearInterval(interval);
 			total.textContent = count;
-		}, time);
+		}, 1);
 	};
 
 	const countCalc = () => {
+		const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
+		const calcSquareValue = calcSquare.value;
+
 		let totalValue = 0
 		let calcCountValue = 1;
 		let calcDayValue = 1;
@@ -32,7 +32,7 @@ const calc = () => {
 		else if (calcDay.value < 10 && calcDay.value) calcDayValue = 1.5;
 
 		if (calcType.value && calcSquare.value) {
-			totalValue = +(calcType.value * calcSquare.value * calcCountValue * calcDayValue);
+			totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
 			totalValueAnimation(totalValue);
 
 		} else totalValue = 0;
@@ -42,6 +42,7 @@ const calc = () => {
 	calcBlock.addEventListener('change', (e) => {
 		if (e.target === calcType || e.target === calcSquare ||
 			e.target === calcCount || e.target === calcDay) {
+			clearInterval(interval);
 			countCalc();
 		}
 	});
