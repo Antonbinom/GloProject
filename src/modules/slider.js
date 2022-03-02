@@ -1,4 +1,4 @@
-const slider = (dot, dotActive, itemActive, btn) => {
+const slider = (dot, dotActive, itemActive) => {
 	const sliderBlock = document.querySelector('.portfolio-content');
 	const slides = document.querySelectorAll('.portfolio-item');
 	const dotsBlock = document.querySelector('.portfolio-dots');
