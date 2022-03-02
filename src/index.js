@@ -10,4 +10,4 @@ menu();
 modal();
 validation();
 tabs();
-slider('dot', 'dot-active', 'portfolio-item-actived');
+slider('dot', 'dot-active', 'portfolio-item-active');
