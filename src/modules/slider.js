@@ -1,4 +1,4 @@
-const slider = () => {
+const slider = (dot, dotActive, itemActive, btn) => {
 	const sliderBlock = document.querySelector('.portfolio-content');
 	const slides = document.querySelectorAll('.portfolio-item');
 	const dotsBlock = document.querySelector('.portfolio-dots');
@@ -10,11 +10,11 @@ const slider = () => {
 	const addDots = () => {
 		slides.forEach(() => {
 			let newDot = document.createElement('li');
-			newDot.classList.add('dot');
+			newDot.classList.add(dot);
 			dotsBlock.append(newDot);
 		});
 		dots = document.querySelectorAll('.dot');
-		dots[0].classList.add('dot-active');
+		dots[0].classList.add(dotActive);
 	};
 
 	const prevSlide = (elem, index, strClass) => {
@@ -34,25 +34,25 @@ const slider = () => {
 	};
 
 	const autoSlide = () => {
-		prevSlide(slides, currentSlide, 'portfolio-item-active');
-		prevSlide(dots, currentSlide, 'dot-active');
+		prevSlide(slides, currentSlide, itemActive);
+		prevSlide(dots, currentSlide, dotActive);
 
 		currentSlide++;
 		if (currentSlide >= slides.length) currentSlide = 0;
-		nextSlide(slides, currentSlide, 'portfolio-item-active');
-		nextSlide(dots, currentSlide, 'dot-active');
+		nextSlide(slides, currentSlide, itemActive);
+		nextSlide(dots, currentSlide, dotActive);
 	};
 
 	sliderBlock.addEventListener('click', (e) => {
 		e.preventDefault();
 
 		if (!e.target.matches('.dot, .portfolio-btn')) return;
-		prevSlide(slides, currentSlide, 'portfolio-item-active');
-		prevSlide(dots, currentSlide, 'dot-active');
+		prevSlide(slides, currentSlide, itemActive);
+		prevSlide(dots, currentSlide, dotActive);
 
 		if (e.target.matches('#arrow-right')) currentSlide++;
 		else if (e.target.matches('#arrow-left')) currentSlide--;
-		else if (e.target.classList.contains('dot')) {
+		else if (e.target.classList.contains(dot)) {
 			dots.forEach((dot, index) => {
 				if (e.target === dot) currentSlide = index;
 			});
@@ -60,8 +60,8 @@ const slider = () => {
 		if (currentSlide >= slides.length) currentSlide = 0;
 		if (currentSlide < 0) currentSlide = slides.length - 1;
 
-		nextSlide(slides, currentSlide, 'portfolio-item-active');
-		nextSlide(dots, currentSlide, 'dot-active');
+		nextSlide(slides, currentSlide, itemActive);
+		nextSlide(dots, currentSlide, dotActive);
 	});
 
 	sliderBlock.addEventListener('mouseenter', (e) => {
