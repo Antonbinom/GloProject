@@ -1,58 +1,71 @@
+import {
+	animate
+} from "./helper";
+
 const modal = () => {
 
 	const modal = document.querySelector('.popup');
 	const modalContent = modal.querySelector('.popup-content');
 	const buttons = document.querySelectorAll('.popup-btn');
 
-	let idInterval;
-	let count = 0;
-
 	const modalUp = () => {
-		idInterval = requestAnimationFrame(modalUp);
-		modalContent.style.transition = "all 0.3s";
-		if (modalContent.style.top > "10%") {
-			count++;
-			modalContent.style.top = (120 - count * 10) + '%';
-		} else {
-			cancelAnimationFrame(idInterval);
-		}
+		let startPosition = modalContent.style.top = 100;
+
+		animate({
+			duration: 200,
+			timing(timeFraction) {
+				return timeFraction;
+			},
+			draw(progress) {
+				if (progress > 0) {
+					modal.style.display = "block";
+					modal.style.opacity = 0;
+					modal.style.opacity = progress;
+					modalContent.style.top = (startPosition - (startPosition - 10) * progress) + "%";
+				} else {
+					modal.style.display = "none"
+				}
+			}
+		});
+
 	};
 
 	const modalDown = () => {
-		idInterval = requestAnimationFrame(modalUp);
-		modalContent.style.transition = "all 0.3s";
-		if (modalContent.style.top < "120%") {
-			count++;
-			modalContent.style.top = (10 + count * 10) + '%';
-		} else {
-			cancelAnimationFrame(idInterval);
-		}
+		let startPosition = modalContent.style.top = 10;
+
+		animate({
+			duration: 200,
+			timing(timeFraction) {
+				return timeFraction;
+			},
+			draw(progress) {
+				progress == 1 ? modal.style.display = "none" :
+					modal.style.opacity = 1 - progress;
+				modalContent.style.top = (startPosition + progress * 90) + "%";
+			}
+		});
 	};
 
 	buttons.forEach(btn => {
 		btn.addEventListener('click', () => {
-			modal.style.display = "block";
-			if (innerWidth <= 768) {
-				modalContent.style.top = "10%";
-			} else {
-				idInterval = requestAnimationFrame(modalUp);
-				modalContent.style.top = "120%";
+
+			if (innerWidth > 768) modalUp();
+			else {
+				modal.style.display = "block";
+				modal.style.opacity = 1;
+				modalContent.style.top = 10 + "%";
 			}
 		});
 	});
 
 	modal.addEventListener('click', (e) => {
 		if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
-			if (innerWidth > 768) {
-				modalContent.style.top = "120%";
-				count = 0;
-				setTimeout(() => {
-					modal.style.display = "none";
-				}, 100);
-			} else {
-				idInterval = requestAnimationFrame(modalDown);
-				modalContent.style.top = "10%";
+
+			if (innerWidth > 768) modalDown();
+			else {
 				modal.style.display = "none";
+				modal.style.opacity = 1;
+				modalContent.style.top = 10 + "%";
 			}
 		}
 	});
