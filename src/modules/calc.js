@@ -6,17 +6,30 @@ const calc = (price = 100) => {
 	const calcCount = document.querySelector('.calc-count');
 	const calcDay = document.querySelector('.calc-day');
 	const total = document.getElementById('total');
-	let interval;
-	const totalValueAnimation = (value) => {
-		let count = 0;
-		let step = value / 100;
 
-		interval = setInterval(() => {
-			count += step;
-			if (count == value) clearInterval(interval);
-			total.textContent = count;
-		}, 1);
-	};
+	const animate = ({
+		timing,
+		draw,
+		duration
+	}) => {
+
+		let start = performance.now();
+
+		requestAnimationFrame(function animate(time) {
+			let timeFraction = (time - start) / duration;
+			if (timeFraction > 1) timeFraction = 1;
+
+
+			let progress = timing(timeFraction);
+
+			draw(progress);
+
+			if (timeFraction < 1) {
+				requestAnimationFrame(animate);
+			}
+
+		});
+	}
 
 	const countCalc = () => {
 		const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -33,16 +46,23 @@ const calc = (price = 100) => {
 
 		if (calcType.value && calcSquare.value) {
 			totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-			totalValueAnimation(totalValue);
 
 		} else totalValue = 0;
 
+		animate({
+			duration: 500,
+			timing(timeFraction) {
+				return timeFraction;
+			},
+			draw(progress) {
+				total.textContent = Math.round(progress * totalValue);
+			}
+		});
 	};
 
 	calcBlock.addEventListener('change', (e) => {
 		if (e.target === calcType || e.target === calcSquare ||
 			e.target === calcCount || e.target === calcDay) {
-			clearInterval(interval);
 			countCalc();
 		}
 	});
