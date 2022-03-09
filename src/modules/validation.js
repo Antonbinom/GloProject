@@ -1,49 +1,19 @@
 const validation = () => {
 
-	const calcBlock = document.querySelector('.calc-block');
-	const calcInputs = calcBlock.querySelectorAll('input');
-	const inputText = document.querySelectorAll('[name="user_message"], [name="user_name"]');
-	const inputPhone = document.querySelectorAll('[type="tel"]');
-	const inputEmail = document.querySelectorAll('[type="email"]');
-	const userFormInputs = document.querySelectorAll('[name="user_form"] input');
-
-	calcInputs.forEach((item) => {
-		item.addEventListener('input', (e) => {
-			e.target.value = e.target.value.replace(/\D+/g, "");
-		});
-	});
-
-	inputText.forEach((item) => {
-		item.addEventListener('input', (e) => {
-			e.target.value = e.target.value.replace(/[^а-я\ \-\.\,]/gi, "");
-		});
-
-		item.addEventListener('blur', (e) => {
-			e.target.value = e.target.value.toLowerCase().replace(/([\-\ ]|^)([а-яё])/g, (str) => {
-				return str.toUpperCase();
-			});
-		});
-	});
-
-	inputPhone.forEach((item) => {
-		item.addEventListener('input', (e) => {
-			e.target.value = e.target.value.replace(/[^0-9()-]/gi, "");
-		});
-	});
-
-	inputEmail.forEach((item) => {
-		item.addEventListener('input', (e) => {
+	document.body.addEventListener('input', (e) => {
+		if (e.target.name === 'user_name') {
+			e.target.value = e.target.value.replace(/[^а-я\ ]/gi, "");
+		} else if (e.target.name === 'user_email') {
 			e.target.value = e.target.value.replace(/[^\@\-\_\.\!\~\*\'\w]/gi, "");
-		});
+		} else if (e.target.name === 'user_phone') {
+			e.target.value = e.target.value.replace(/[^0-9()\-\+]/gi, "");
+		} else if (e.target.name === 'user_message') {
+			e.target.value = e.target.value.replace(/[^а-я0-9\ \.\,]/gi, "");
+		} else if (e.target.classList.contains('calc-item')) {
+			e.target.value = e.target.value.replace(/\D+/g, "");
+		}
 	});
 
-	userFormInputs.forEach((item) => {
-		item.addEventListener('blur', (e) => {
-			e.target.value = e.target.value.replace(/^\-+|\-+$/g, '').replace(/([\s\-])+/g, (str, $1) => {
-				return $1;
-			});
-		});
-	});
 };
 
 export default validation;
