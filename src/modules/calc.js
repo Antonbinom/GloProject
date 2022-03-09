@@ -15,9 +15,9 @@ export const calc = (price = 100) => {
 		let totalValue = 0
 		let calcCountValue = 1;
 		let calcDayValue = 1;
+
 		const calcTypeValue = calcType.options[calcType.selectedIndex].value;
 		const calcSquareValue = +calcSquare.value;
-		console.log(calcTypeValue);
 
 		if (calcCount.value > 1) calcCountValue += +calcCount.value / 10;
 
@@ -40,8 +40,7 @@ export const calc = (price = 100) => {
 	};
 
 	calcBlock.addEventListener('change', (e) => {
-		if (e.target === calcType || e.target === calcSquare ||
-			e.target === calcCount || e.target === calcDay) {
+		if (e.target.matches('select') || e.target.matches('input')) {
 			countCalc();
 		}
 	});
