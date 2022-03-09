@@ -22,6 +22,9 @@ import {
 import {
 	sendForm
 } from "./modules/sendForm";
+import {
+	swiper
+} from "./modules/swiper";
 
 timer('25 march 2022'); // вызов функции. Передаем дату deadline
 menu();
@@ -33,3 +36,4 @@ calc(100);
 sendForm({
 	formName: '[name = user_form]'
 });
+swiper();
