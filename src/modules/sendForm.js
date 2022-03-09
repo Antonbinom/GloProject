@@ -41,6 +41,7 @@ const sendForm = ({
 			sendData(formBody)
 				.then(data => {
 					statusBlock.classList.remove('loader');
+					statusBlock.style.color = 'white';
 					statusBlock.textContent = successText;
 
 					formElements.forEach(input => {
