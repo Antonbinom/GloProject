@@ -2,7 +2,7 @@ import {
 	animate
 } from "./helper";
 
-const modal = () => {
+export const modal = () => {
 
 	const modal = document.querySelector('.popup');
 	const modalContent = modal.querySelector('.popup-content');
@@ -70,5 +70,3 @@ const modal = () => {
 		}
 	});
 };
-
-export default modal;

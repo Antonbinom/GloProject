@@ -1,4 +1,4 @@
-const slider = (dot, dotActive, itemActive) => {
+export const slider = (dot, dotActive, itemActive) => {
 	const sliderBlock = document.querySelector('.portfolio-content');
 	const slides = document.querySelectorAll('.portfolio-item');
 	const dotsBlock = document.querySelector('.portfolio-dots');
@@ -75,5 +75,3 @@ const slider = (dot, dotActive, itemActive) => {
 	startSlide(timerInterval);
 	addDots();
 };
-
-export default slider;

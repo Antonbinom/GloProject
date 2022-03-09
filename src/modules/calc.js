@@ -2,7 +2,7 @@ import {
 	animate
 } from "./helper";
 
-const calc = (price = 100) => {
+export const calc = (price = 100) => {
 
 	const calcBlock = document.querySelector('.calc-block');
 	const calcType = document.querySelector('.calc-type');
@@ -12,12 +12,12 @@ const calc = (price = 100) => {
 	const total = document.getElementById('total');
 
 	const countCalc = () => {
-		const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
-		const calcSquareValue = calcSquare.value;
-
 		let totalValue = 0
 		let calcCountValue = 1;
 		let calcDayValue = 1;
+		const calcTypeValue = calcType.options[calcType.selectedIndex].value;
+		const calcSquareValue = +calcSquare.value;
+		console.log(calcTypeValue);
 
 		if (calcCount.value > 1) calcCountValue += +calcCount.value / 10;
 
@@ -46,5 +46,3 @@ const calc = (price = 100) => {
 		}
 	});
 };
-
-export default calc;

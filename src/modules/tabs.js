@@ -1,4 +1,4 @@
-const tabs = () => {
+export const tabs = () => {
 
 	const tabPanel = document.querySelector('.service-header');
 	const tabs = tabPanel.querySelectorAll('.service-header-tab');
@@ -20,5 +20,3 @@ const tabs = () => {
 	});
 
 };
-
-export default tabs;

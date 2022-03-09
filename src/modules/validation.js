@@ -1,4 +1,4 @@
-const validation = () => {
+export const validation = () => {
 
 	document.body.addEventListener('input', (e) => {
 		if (e.target.name === 'user_name') {
@@ -15,5 +15,3 @@ const validation = () => {
 	});
 
 };
-
-export default validation;

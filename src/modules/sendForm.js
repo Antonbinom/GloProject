@@ -1,4 +1,4 @@
-const sendForm = ({
+export const sendForm = ({
 	formName
 }) => {
 	const forms = document.querySelectorAll(formName); // получаем форму
@@ -63,5 +63,3 @@ const sendForm = ({
 		});
 	});
 };
-
-export default sendForm;
