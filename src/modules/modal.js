@@ -12,7 +12,7 @@ export const modal = () => {
 		let startPosition = modalContent.style.top = 100;
 
 		animate({
-			duration: 200,
+			duration: 100,
 			timing(timeFraction) {
 				return timeFraction;
 			},
@@ -27,14 +27,13 @@ export const modal = () => {
 				}
 			}
 		});
-
 	};
 
 	const modalDown = () => {
 		let startPosition = modalContent.style.top = 10;
 
 		animate({
-			duration: 200,
+			duration: 100,
 			timing(timeFraction) {
 				return timeFraction;
 			},

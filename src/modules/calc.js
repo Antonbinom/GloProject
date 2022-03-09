@@ -20,10 +20,8 @@ export const calc = (price = 100) => {
 		const calcSquareValue = +calcSquare.value;
 
 		if (calcCount.value > 1) calcCountValue += +calcCount.value / 10;
-
 		if (calcDay.value < 5 && calcDay.value) calcDayValue = 2;
 		else if (calcDay.value < 10 && calcDay.value) calcDayValue = 1.5;
-
 		if (calcType.value && calcSquare.value) {
 			totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
 

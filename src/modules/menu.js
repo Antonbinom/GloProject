@@ -1,7 +1,7 @@
 export const menu = () => {
 	const menu = document.querySelector('menu');
 	const body = document.querySelector('body');
-	// скрыть/показать меню
+
 	const menuActive = () => {
 		menu.classList.toggle('active-menu');
 	};

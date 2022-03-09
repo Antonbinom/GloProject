@@ -1,4 +1,5 @@
 export const validation = () => {
+	const inputText = document.querySelectorAll('[name="user_name"]');
 
 	document.body.addEventListener('input', (e) => {
 		if (e.target.name === 'user_name') {
@@ -12,5 +13,13 @@ export const validation = () => {
 		} else if (e.target.matches('input') && e.target.classList.contains('calc-item')) {
 			e.target.value = e.target.value.replace(/\D+/g, "");
 		}
+	});
+
+	inputText.forEach((item) => {
+		item.addEventListener('blur', (e) => {
+			e.target.value = e.target.value.toLowerCase().replace(/([\-\ ]|^)([а-яё])/g, (str) => {
+				return str.toUpperCase();
+			});
+		});
 	});
 };
