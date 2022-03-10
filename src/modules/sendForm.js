@@ -13,6 +13,20 @@ export const sendForm = ({
 		return success;
 	};
 
+	const addMessage = (form) => {
+		statusBlock.textContent = '';
+		statusBlock.classList.add('loader');
+		statusBlock.style.display = "block";
+		form.append(statusBlock);
+	};
+
+	const successMessage = () => {
+		statusBlock.classList.remove('loader');
+		statusBlock.style.color = 'white';
+		statusBlock.textContent = successText;
+		setTimeout(() => statusBlock.style.display = "none", 2000);
+	};
+
 	const sendData = (data) => { // функция отправки формы
 		return fetch('https://jsonplaceholder.typicode.com/posts', {
 			method: 'POST', // метод отправить
@@ -27,9 +41,8 @@ export const sendForm = ({
 		const formElements = form.querySelectorAll('input');
 		const formData = new FormData(form); // создадим экземпляр FormData и передадим в нее нашу форму
 		const formBody = {}; // будем передавать пустой formBody
-		statusBlock.textContent = '';
-		statusBlock.classList.add('loader');
-		form.append(statusBlock);
+
+		addMessage(form);
 
 		formData.forEach((val, key) => { // переберем formData
 			formBody[key] = val; // с каждой итерацией будем обращаться к formBody и будем записывать в него свойство ключ и значение
@@ -40,15 +53,14 @@ export const sendForm = ({
 		if (validate(formElements)) {
 			sendData(formBody)
 				.then(data => {
-					statusBlock.classList.remove('loader');
-					statusBlock.style.color = 'white';
-					statusBlock.textContent = successText;
-
+					console.log(data);
+					successMessage();
 					formElements.forEach(input => {
 						input.value = '';
 					});
 				})
 				.catch(error => {
+					console.log(error)
 					statusBlock.textContent = errorText;
 				});
 		} else {
