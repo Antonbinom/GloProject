@@ -9,8 +9,10 @@ export const menu = () => {
 	body.addEventListener('click', (e) => {
 		if (e.target.closest('.menu')) menuActive();
 		else if (e.target.matches('menu')) return;
-		else if (e.target.classList.contains('close-btn')) menuActive();
-		else if (e.target.matches('ul>li>a')) {
+		else if (e.target.classList.contains('close-btn')) {
+			e.preventDefault();
+			menuActive();
+		} else if (e.target.matches('ul>li>a')) {
 			e.preventDefault();
 			const blockId = e.target.getAttribute('href');
 			document.querySelector(blockId).scrollIntoView({

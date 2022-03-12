@@ -1,14 +1,24 @@
+// import {
+// 	validation
+// } from "./modules/validation";
+
 export const sendForm = ({
 	formName
 }) => {
 	const forms = document.querySelectorAll(formName); // получаем форму
 	const statusBlock = document.createElement('div');
-	const loadText = 'Загрузка...';
 	const errorText = 'Ошибка...';
 	const successText = 'Спасибо! Наш менеджер с вами свяжемся!';
+	const invalidText = 'Не верно заполнены поля!';
 
 	const validate = (list) => {
 		let success = true;
+
+		list.forEach(input => {
+			if (!input.classList.contains('success')) {
+				success = false;
+			}
+		});
 
 		return success;
 	};
@@ -25,6 +35,12 @@ export const sendForm = ({
 		statusBlock.style.color = 'white';
 		statusBlock.textContent = successText;
 		setTimeout(() => statusBlock.style.display = "none", 2000);
+	};
+	const invalideMessage = () => {
+		statusBlock.style.display = "block";
+		statusBlock.style.color = 'red';
+		statusBlock.textContent = invalidText;
+		setTimeout(() => statusBlock.style.display = "none", 4000);
 	};
 
 	const sendData = (data) => { // функция отправки формы
@@ -57,6 +73,8 @@ export const sendForm = ({
 					successMessage();
 					formElements.forEach(input => {
 						input.value = '';
+						input.classList.remove('success');
+						input.style.boxShadow = "";
 					});
 				})
 				.catch(error => {
@@ -64,7 +82,8 @@ export const sendForm = ({
 					statusBlock.textContent = errorText;
 				});
 		} else {
-			alert('Данные не валидны!!!');
+			invalideMessage();
+			statusBlock.classList.remove('loader');
 		}
 	};
 
