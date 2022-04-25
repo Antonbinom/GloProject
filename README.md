@@ -1,4 +1,4 @@
-"3dGLO" сайт GLO Academy
+3dGLO 
 
 Учебный проект курса JavaScript в GLO Academy.
 
