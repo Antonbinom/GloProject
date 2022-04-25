@@ -1,7 +1,5 @@
 3dGLO 
 
-<a href="https://antonbinom.github.io/GloProject/dist">Демо</a>
-
 Учебный проект курса JavaScript в GLO Academy.
 
 О приложениии:
@@ -22,3 +20,5 @@
 - Модульная структура скриптов;
 - Swiper Slider;
 - Отправка данных на сервер fetch-api;
+
+## <a href="https://antonbinom.github.io/GloProject/dist">Ссылка</a>
