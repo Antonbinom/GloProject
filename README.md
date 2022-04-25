@@ -1,6 +1,6 @@
 3dGLO 
 
-Демо https://antonbinom.github.io/GloProject/dist
+<a href="https://antonbinom.github.io/GloProject/dist">Демо</a>
 
 Учебный проект курса JavaScript в GLO Academy.
 
