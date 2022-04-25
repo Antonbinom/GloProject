@@ -26,7 +26,7 @@ import {
 	swiper
 } from "./modules/swiper";
 
-timer('25 march 2022'); // вызов функции. Передаем дату deadline
+timer('25 march 2023'); // вызов функции. Передаем дату deadline
 menu();
 modal();
 validation();
