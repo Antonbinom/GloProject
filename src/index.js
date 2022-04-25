@@ -31,7 +31,7 @@ menu();
 modal();
 validation();
 tabs();
-slider('dot', 'dot-active', 'portfolio-item-active');
+slider('.portfolio-content', '.portfolio-item');
 calc(100);
 sendForm({
 	formName: '[name = user_form]'

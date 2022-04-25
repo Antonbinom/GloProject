@@ -42,8 +42,8 @@ export const calc = (price = 100) => {
 		// если выбран тип объекта и указана площадь
 		if (calcType.value && calcSquare.value) {
 			totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-			let newTotalValue = [];
-			newTotalValue.push(totalValue);
+			// let newTotalValue = [];
+			// newTotalValue.push(totalValue);
 
 		} else totalValue = 0;
 		let oldTotal = +total.textContent;

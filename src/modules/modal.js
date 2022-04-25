@@ -69,3 +69,20 @@ export const modal = () => {
 		}
 	});
 };
+
+if (widthScreen < 768) {
+	modal.style.display = 'block';
+} else {
+	modal.style.display = 'block';
+	animate({
+		duration: 1000,
+		timing(timeFraction) {
+			return timeFraction;
+		},
+		draw(progress) {
+			modalContent.style.left = (40 * progress) + '%'
+		}
+	});
+}
+})
+})

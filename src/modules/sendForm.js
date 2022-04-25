@@ -1,7 +1,3 @@
-// import {
-// 	validation
-// } from "./modules/validation";
-
 export const sendForm = ({
 	formName
 }) => {
